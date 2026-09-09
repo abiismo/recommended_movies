@@ -1,18 +1,20 @@
-# Splitwise CLI — Shared Expense Manager
+# Recommended movies 
 
 ## About
 
-This algorithm takes a group of people as input. A lead person joins the group and pays the total amount. It also calculates the amount each person owes, and if someone has paid, the algorithm receives this information and saves the changes to the database.
+Recommended movies based on the rating of the user, pick up the id of the movie and does a search of similar movies through of an API
 
 ## Prerequisites
-
 
 ##### Before you continue, ensure you have met the following requirements:
 
 * you have the latest version of python 
 * you have the flask librarie already installed 
-* have a knowledge about SQL statements 
-* and basic use of postman app to apply people inside of the algorithm
+* have a knowledge about SQL statements
+* after reading the TMDB API you can use and understand some functionalities of this project: 
+    ```
+    https://developer.themoviedb.org/docs/getting-started
+    ```
 
 
 ## Installation
@@ -28,87 +30,43 @@ This algorithm takes a group of people as input. A lead person joins the group a
     DB_PASSWORD=
     DB_NAME=
     ```
-* Create a database with the schema
-* run main.py
+* Create a basic database with the schema (user, and ratings)
+* run main.py and app.py
 
 
 ```bash
-git clone https://github.com/tuusuario/splitwise.git
-cd splitwise
-pip install flask mysql-connector-python python-dotenv
+git clone https://github.com/abiismo/recommended_movies
 ```
-
 
 ## Usage
 
-### GET /owes
-Returns the net debt between two users.
+### GET /recommendations
 
-**Params:** `user_a`, `user_b`
+It retrieves the user's movie from the database and fetches only those movies with a rating of 4 or higher.
 
-**Example:** http://localhost:5000/owes?user_a=2&user_b=1
+**Example:** http://127.0.0.1:5000/recommendations?id_user=1 
 
 **Response:**
-```json
-{"deuda_neta": 30000.00}
+```
+{
+    "adult": false,
+    "backdrop_path": "/8eRscFbRYl681zDfkjv1jjW1KAA.jpg",
+    "genre_ids": [878, 28, 12],
+    "id": 1452,
+    "original_language": "en",
+    "original_title": "Superman Returns",
+    "overview": "Superman returns to discover his 5-year absence has allowed Lex Luthor to...",
+    "popularity": 10.5205,
+    "poster_path": "/385XwTQZDpRX2d3kxtnpiLrjBXw.jpg",
+    "release_date": "2006-06-28",
+    "softcore": false,
+    "title": "Superman Returns",
+    "video": false,
+    "vote_average": 5.823,
+    "vote_count": 4692
+},
 ```
  
-### POST /payment
-record a payment between the person who owes money and the person who paid all the expenses
-
-**Params:** `payer_id`, `receiver_id`, `amount`
-
-**Example:** http://127.0.0.1:5000/payment
-
-**Body:**
-
-```json
-{
-    "payer_id": 2,
-    "receiver_id": 1,
-    "amount": 30000
-}
-
-
-
-### POST /expenses
-Insert a record of expense into a database
-
-**Params:** `paid_by`, `amount`, `id_group`, `description`, `list_participants`
-
-**Example:** http://127.0.0.1:5000/expenses
-
-**Response:**
-```json
-{"detalle_gasto": "22"}
-```
-
-**Body:**
-
-```json
-{
-    "paid_by": 1,
-    "amount": 90000,
-    "id_group": 1,
-    "description": "Cena",
-    "list_participants": [
-        [1, 30000],
-        [2, 30000],
-        [3, 30000]
-    ]
-}   
-```
-
-
-
-
-
-
-
-
-
-
-
 
 
 
