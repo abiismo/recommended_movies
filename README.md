@@ -103,11 +103,15 @@ user_password: it get the password of the user
 **Example**: http://127.0.0.1:5000/register?user_name=nova,user_password=4321
 
 **Response**
-```
-{
-    "register": null
-}
 
+**URL:** `http://127.0.0.1:5000/register`
+
+**Body:**
+```json
+{
+    "user_name": "nova",
+    "user_password": "4321"
+}
 ```
 
 now check your dabatabase. a new user with their password must be inserted. 
@@ -127,7 +131,7 @@ user_password: it get the password of the user
 **Response**
 ```
 {
-    {True, 'login'}
+    "login": true
 }
 
 ```
