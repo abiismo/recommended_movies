@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import connection
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv 
 from pathlib import Path
 
 env_path = Path(__file__).parent / ".env" # Search my current file
