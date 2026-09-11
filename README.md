@@ -54,21 +54,83 @@ It retrieves the user's movie from the database and fetches only those movies wi
     "genre_ids": [878, 28, 12],
     "id": 1452,
     "original_language": "en",
-    "original_title": "Superman Returns",
+    "original_title": "Superman Returns"
     "overview": "Superman returns to discover his 5-year absence has allowed Lex Luthor to...",
     "popularity": 10.5205,
     "poster_path": "/385XwTQZDpRX2d3kxtnpiLrjBXw.jpg",
     "release_date": "2006-06-28",
-    "softcore": false,
     "title": "Superman Returns",
     "video": false,
     "vote_average": 5.823,
     "vote_count": 4692
 },
 ```
- 
+
+### GET /search
+
+The function performs a search using a query parameter and accesses the TMDB API search to find a movie.
+
+**Response:**
+```
+{
+'page': 1, 'results': 
+    {
+    'adult': False, 
+    'backdrop_path': '/yRBc6WY3r1Fz5Cjd6DhSvzqunED.jpg', 
+    'genre_ids': [878, 12, 28], 
+    'id': 1061474, 
+    'title': 'Superman', 
+    'original_language': 'en', 
+    'original_title': 'Superman', 
+    'overview': 'Superman, a journalist in Metropolis, embarks on a journey to reconcile his Kryptonian heritage with his human upbringing as Clark Kent.', 'popularity': 38.2691, 'poster_path': '/ldyfo0BKmz5rWtJJKCvwaNS4cJT.jpg', 'release_date': '2025-07-09', 
+    'video': False, 
+    'vote_average': 7.327, 
+    'vote_count': 5410
+    },
+}
+```
+
+### POST /register
+
+it receive two parameters and insert them into the data base. Also, important to know that the password get a salt to the password for security. 
 
 
+**Parameters**:
+
+user_name: it get the name of the user
+user_password: it get the password of the user
+
+**Example**: http://127.0.0.1:5000/register?user_name=nova,user_password=4321
+
+**Response**
+```
+{
+    "register": null
+}
+
+```
+
+now check your dabatabase. a new user with their password must be inserted. 
+
+### POST /login
+
+It receives two parameters, accesses the database, and checks whether a user with those characteristics exists. It will return a boolean value of *True* if the condition is met; otherwise, it will return *False*.
+
+**Parameters**:
+
+user_name: it get the name of the user
+user_password: it get the password of the user
+
+**Example**: http://127.0.0.1:5000/login?user_name=novita,user_password=4321
+
+
+**Response**
+```
+{
+    {True, 'login'}
+}
+
+```
 
 
 
